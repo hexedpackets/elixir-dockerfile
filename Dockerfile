@@ -14,9 +14,11 @@ RUN echo "deb http://packages.erlang-solutions.com/debian wheezy contrib" >> /et
     apt-key add erlang_solutions.asc && \
     rm erlang_solutions.asc
 
+RUN apt-get update && apt-get install -y git
+
 # Install Elixir
 ENV ELIXIR_VERSION 1.0.4
-RUN apt-get update && apt-get install -y elixir=${ELIXIR_VERSION}-1
+RUN apt-get install -y elixir=${ELIXIR_VERSION}-1
 RUN mix local.hex --force && mix local.rebar --force
 
 CMD iex
